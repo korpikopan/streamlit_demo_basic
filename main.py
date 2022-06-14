@@ -4,7 +4,6 @@ from matplotlib import pyplot as plt
 from datetime import date
 
 current_month = date.today().month
-current_year = date.today().year
 
 
 st.title("Visualisations Covid-19 2020/2021 France")
@@ -30,8 +29,8 @@ covid_data['year'] = covid_data.apply(lambda x: int(x['jour'].split('-')[0]), ax
 covid_data['month'] = covid_data.apply(lambda x: int(x['jour'].split('-')[1]), axis=1)
 with st.sidebar:
     st.sidebar.title("Periode")
-    year_select = st.selectbox('Année', covid_data['year'].sort_values().unique(), index=list(covid_data['year'].sort_values().unique()).index(current_year))
-    month_select = st.selectbox('Mois', covid_data['month'].sort_values().unique(), index=list(covid_data['month'].sort_values().unique()).index(current_month))
+    year_select = st.selectbox('Année', covid_data['year'].sort_values().unique(), index=[2020, 2021])
+    month_select = st.selectbox('Mois', covid_data['month'].sort_values().unique(), index=[1,2,3,4,5,6,7,8,9,10,11,12])
     kpi_select = st.radio("Mesure", ("Reanimation", "Hospitalisation", "décès"))
     if kpi_select == 'Reanimation':
         value_select = 'rea'
